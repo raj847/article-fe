@@ -1,0 +1,23 @@
+{{define "body"}}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {{range $index, $post := .posts }}
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            {{$post.Title}}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{$post.Category}}</li>
+            <li class="list-group-item">{{$post.Content}}</li>
+          </ul>
+        </div>
+        <br>
+      {{end}}
+      <a type="button" class="btn btn-sm btn-warning" href="/preview?page={{.prev}}">Prev</a>
+      <a type="button" class="btn btn-sm btn-warning" href="/preview?page={{.next}}">Next</a>
+      
+    </div>
+  </div>
+</div>
+{{end}}

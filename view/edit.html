@@ -1,0 +1,42 @@
+{{define "body"}}
+
+  {{ if index . "error" }}
+  <div class="container">
+    <div class="alert alert-danger" role="alert">
+    {{.error}}
+    </div>
+  </div>
+  {{end}}
+
+  {{ if index . "success" }}
+  <div class="container">
+    <div class="alert alert-success" role="alert">
+    success edt data
+    </div>
+  </div>
+  {{end}}
+  <div class="container">
+    <h1>Edit</h1>
+    <form method="POST" action="/edit">
+        <input type="hidden"  name="id" value="{{.post.ID}}"/>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Minimum 20 characters" value={{.post.Title}} required>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input type="text" class="form-control" id="category" name="category" placeholder="Minimum 3 characters" value={{.post.Category}} required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" id="content" name="content" rows="5" required>
+            {{- .post.Content}}
+        </textarea>
+      </div>
+      <div class="btn-group" role="group" aria-label="Publish or Draft">
+        <button type="submit" name="status" value="publish" class="btn btn-outline-secondary">Publish</button>
+        <button type="submit" name="status" value="draft" class="btn btn-outline-secondary">Draft</button>
+      </div>
+    </form>
+  </div>
+{{end}}
